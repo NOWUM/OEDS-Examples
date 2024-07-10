@@ -1,0 +1,65 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid gray;
+
+}
+
+.sidebar {
+  position: absolute;
+  top: 140px;
+  left: 0px;
+  background-color: white;
+  width: 350px;
+  z-index: 1000;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  overflow-y: auto;
+}
+
+.section {
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mapContainer {
+  flex: 1;
+  overflow: visible;
+  position: relative;
+}
+
+.absoluteFill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
