@@ -24,7 +24,7 @@ export const DBProvider = ({ children }) => {
     useEffect(() => {
         if (!selectedProfile) return;
 
-        const url = new URL(process.env.REACT_APP_OPENDATA_URL);
+        const url = new URL(process.env.REACT_APP_OPENDATA_URL +"/");
         fetch(url, {
             headers: new Headers({
                 'Accept-Profile': selectedProfile
