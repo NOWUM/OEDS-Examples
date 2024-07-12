@@ -24,6 +24,7 @@ The OpenAPI schema can be udate by using the following sql statement:
 NOTIFY pgrst, 'reload config';
 NOTIFY pgrst, 'reload schema';
 ```
+Some useful scripts for locating and generating metdata can be found in the [metadata_scripts](./metadata_scripts) folder.
 
 ## Usage
 ### Initial View
