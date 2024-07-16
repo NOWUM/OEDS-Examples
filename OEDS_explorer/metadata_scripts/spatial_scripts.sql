@@ -3,8 +3,10 @@ SELECT table_name, column_name
 FROM information_schema.columns
 WHERE ((column_name LIKE 'lat%')
 	OR (column_name LIKE 'Lat%')
-	OR (column_name LIKE 'lae%')
-	OR (column_name LIKE 'Lae%')
+	OR (column_name LIKE 'laen%')
+	OR (column_name LIKE 'Laen%')
+    OR (column_name LIKE 'län%')
+	OR (column_name LIKE 'Län%')
 	OR (column_name LIKE 'Geo%')
 	OR (column_name LIKE 'geo%')	
 	OR (column_name LIKE 'Land%')	
@@ -13,7 +15,6 @@ WHERE ((column_name LIKE 'lat%')
 	OR (column_name LIKE 'country%')	
     )
 	and table_schema = 'mastr';
-
 
 -- Bounding hull from lat lon points
 SELECT
@@ -37,6 +38,28 @@ SELECT
     ST_Transform(ST_ConcaveHull(ST_Collect(ST_Points(ST_Simplify(geometry, 20))),0.5), 4326) AS bounding_geometry
 FROM
     nrw_kwp_waermedichte.waermedichte;
+
+-- Distinct geometries of nuts IDs into a bounding hull
+WITH distinct_geometries AS (
+    SELECT DISTINCT n.geometry
+    FROM opsd_national_capacity.national_generation_capacity ONC
+    JOIN public.nuts N ON ONC.country = N.nuts_id
+    WHERE N.geometry IS NOT NULL
+)
+
+SELECT
+    ST_Transform(
+        ST_ConcaveHull(
+            ST_Collect(
+                ST_Points(
+                    ST_Simplify(geometry, 20)
+                )
+            ), 0.5
+        ), 4326
+    ) AS bounding_geometry
+FROM distinct_geometries;
+
+
 
 -- Map Nuts data to column names of a table
 WITH country_nuts AS (
