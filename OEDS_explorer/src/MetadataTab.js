@@ -29,6 +29,12 @@ function MetadataTab() {
         }
     };
 
+    function withCopyrightSymbol(license) {
+        if (license.includes('�')) {
+            return license.replace('�', '©');
+        }
+    }
+
     return (
         <div className="metadata-tab">
             {isLoading ? (
@@ -50,7 +56,7 @@ function MetadataTab() {
                                     <tr><td>Crawl Date</td><td>{selectedMetadata ? selectedMetadata.crawl_date : 'N/A'}</td></tr>
                                     <tr><td>Data Date</td><td>{selectedMetadata ? selectedMetadata.data_date : 'N/A'}</td></tr>
                                     <tr><td>Data Source</td>{selectedMetadata ? <td><a href={selectedMetadata.data_source}> {selectedMetadata.data_source}</a></td> : <td>N/A</td>}</tr>
-                                    <tr><td>Licence</td><td>{selectedMetadata ? selectedMetadata.licence : 'N/A'}</td></tr>
+                                    <tr><td>license</td><td>{selectedMetadata ? withCopyrightSymbol(selectedMetadata.license) : 'N/A'}</td></tr>
                                     <tr><td>Description</td><td>{selectedMetadata ? selectedMetadata.description : 'N/A'}</td></tr>
                                     <tr><td>Contact</td><td>{selectedMetadata ? selectedMetadata.contact : 'N/A'}</td></tr>
                                     <tr><td>Tables</td><td>{selectedMetadata ? selectedMetadata.tables : 'N/A'}</td></tr>

@@ -63,7 +63,7 @@ function InfoTab() {
         <ul style={{ textAlign: 'left', marginLeft: 'auto', marginRight: 'auto', maxWidth: '600px', marginTop: '20px' }}>
           <li style={{ marginBottom: '10px' }}>
             This project aims to visualize the <b>OpenNRW KWP Dataset</b>. It provides users with the ability to explore and analyze the data and export their selected information.
-            Data is provided by the <b>OpenNRW KWP Dataset</b> by OpenGeoData.NRW which is produced with the DL-DE Zero-2.0 Licence.
+            Data is provided by the <b>OpenNRW KWP Dataset</b> by OpenGeoData.NRW which is produced with the DL-DE Zero-2.0 license.
           </li>
           <li style={{ marginBottom: '10px' }}>
             The <b>OpenNRW KWP Dataset</b> estimates space heating demand using building and usage data. It incorporates the IWU typology, Lanuv data, and other datasets into its own calculations. It contains a variety of useful attributes for district heating planning, at a building level granularity.
