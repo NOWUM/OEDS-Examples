@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, useMapEvents, ZoomControl } from 'react-leaflet';
+import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import * as turf from '@turf/turf';
 import L from 'leaflet';
@@ -60,22 +60,6 @@ function MapComponent({ metadataOptions, selectedMetadata, mapZoomTrigger }) {
         }
     }, [activeMetadata, selectedMetadata, mapZoomTrigger]);
 
-    const MapEvents = () => {
-        useMapEvents({
-            click: (e) => {
-                const clickedPoint = turf.point([e.latlng.lng, e.latlng.lat]);
-                const overlaps = activeMetadata.filter((option) => {
-                    if (option.concave_hull_geometry) {
-                        const polygon = turf.polygon(option.concave_hull_geometry.coordinates);
-                        return turf.booleanPointInPolygon(clickedPoint, polygon);
-                    }
-                    return false;
-                });
-
-            }
-        });
-        return null;
-    };
 
     useEffect(() => {
         if (mapZoomTrigger && mapRef.current) {
@@ -93,7 +77,6 @@ function MapComponent({ metadataOptions, selectedMetadata, mapZoomTrigger }) {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
                 <ZoomControl position='bottomleft' />
-                <MapEvents />
 
             </MapContainer>
         </div>

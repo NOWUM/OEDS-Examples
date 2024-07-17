@@ -1,11 +1,9 @@
 // App.js
-import React, { useState, useContext } from 'react';
-import { DBContext } from './DBContext';
+import React, { useState} from 'react';
 import './App.css';
 import RestTab from './RestTab';
 import MetadataTab from './MetadataTab';
 import { DBProvider } from './DBContext';
-import { center } from '@turf/turf';
 import Header from './Header';
 
 function App() {
