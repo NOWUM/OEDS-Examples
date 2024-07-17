@@ -60,7 +60,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v5
         with:
-          context: ./OEDS_explorer
+          context: ./oeds_explorer
           platforms: linux/amd64,linux/arm64/v8
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:latest
