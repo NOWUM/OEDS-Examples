@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nrw_kwp_map:
+    build:
+      context: ./NRW_KWP_map
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+
+  oeds_explorer:
+
+    build:
+      context: ./OEDS_explorer
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3000
