@@ -9,7 +9,10 @@ export const DBProvider = ({ children }) => {
     const [metadataOptions, setMetadataOptions] = useState([]);
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_OPENDATA_URL + "/rpc/swagger_schemas")
+        fetch(process.env.REACT_APP_OPENDATA_URL + "/rpc/swagger_schemas", {
+            mode: 'cors', 
+            credentials: 'include' 
+        })
             .then(res => res.json())
             .then(data => {
                 const sorted = data.sort((a, b) => a.localeCompare(b));
@@ -20,27 +23,32 @@ export const DBProvider = ({ children }) => {
             })
             .catch(error => console.error('Error fetching swagger schemas:', error));
     }, []);
-
+    
     useEffect(() => {
         if (!selectedProfile) return;
-
+    
         const url = new URL(process.env.REACT_APP_OPENDATA_URL +"/");
         fetch(url, {
             headers: new Headers({
                 'Accept-Profile': selectedProfile
-            })
+            }),
+            mode: 'cors',
+            credentials: 'include'
         }).then(response => response.text())
             .then(response => {
                 setSwaggerSpec(JSON.parse(response));
             })
             .catch(error => console.error('Error fetching swagger spec:', error));
     }, [selectedProfile]);
-
+    
     useEffect(() => {
         if (!selectedProfile) return;
-
+    
         const url = new URL(process.env.REACT_APP_OPENDATA_URL +"/metadata");
-        fetch(url)
+        fetch(url, {
+            mode: 'cors',
+            credentials: 'include'
+        })
             .then(res => res.json())
             .then(data => {
                 const sorted = data.sort((a, b) => a.schema_name.localeCompare(b.schema_name));
@@ -48,6 +56,7 @@ export const DBProvider = ({ children }) => {
             })
             .catch(error => console.error('Error fetching swagger schemas:', error));
     }, [selectedProfile]);
+    
 
     return (
         <DBContext.Provider value={{ swaggerSpec, swaggerOptions, metadataOptions, selectedProfile, setSelectedProfile }}>
