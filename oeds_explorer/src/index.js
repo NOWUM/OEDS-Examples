@@ -3,7 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+const consoleError = console.error;
+console.error = (...args) => {
+  const filteredWarnings = [
+    /UNSAFE_componentWillMount/,
+    /UNSAFE_componentWillReceiveProps/,
+    /Support for defaultProps will be removed from function components/
+  ];
+  
+  if (filteredWarnings.some(pattern => pattern.test(args[0]))) {
+    return;
+  }
+  
+  consoleError(...args);
+};
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
