@@ -10,8 +10,6 @@ export const DBProvider = ({ children }) => {
 
     useEffect(() => {
         fetch(process.env.REACT_APP_OPENDATA_URL + "/rpc/swagger_schemas", {
-            mode: 'cors', 
-            credentials: 'include' 
         })
             .then(res => res.json())
             .then(data => {
@@ -32,8 +30,7 @@ export const DBProvider = ({ children }) => {
             headers: new Headers({
                 'Accept-Profile': selectedProfile
             }),
-            mode: 'cors',
-            credentials: 'include'
+
         }).then(response => response.text())
             .then(response => {
                 setSwaggerSpec(JSON.parse(response));
@@ -46,8 +43,7 @@ export const DBProvider = ({ children }) => {
     
         const url = new URL(process.env.REACT_APP_OPENDATA_URL +"/metadata");
         fetch(url, {
-            mode: 'cors',
-            credentials: 'include'
+
         })
             .then(res => res.json())
             .then(data => {
