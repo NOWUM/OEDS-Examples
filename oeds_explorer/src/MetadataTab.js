@@ -31,10 +31,10 @@ function MetadataTab() {
 
     function formatLicense() {
         if (!selectedMetadata){
-            <td>{'N/A'}</td>
+            return <td>N/A</td>;
         } else  if (selectedMetadata.license.includes('�')) {
             const retLicense =selectedMetadata.license.replace('�', '©');
-            return <td>{retLicense}</td> 
+            return <td>{retLicense}</td>;
         } else if (selectedMetadata.license.includes('http')) {
             return <td><a href = {selectedMetadata.license}> {selectedMetadata.license}</a></td>;
         } else {
@@ -63,7 +63,7 @@ function MetadataTab() {
                                     <tr><td>Crawl Date</td><td>{selectedMetadata ? selectedMetadata.crawl_date : 'N/A'}</td></tr>
                                     <tr><td>Data Date</td><td>{selectedMetadata ? selectedMetadata.data_date : 'N/A'}</td></tr>
                                     <tr><td>Data Source</td>{selectedMetadata ? <td><a href={selectedMetadata.data_source}> {selectedMetadata.data_source}</a></td> : <td>N/A</td>}</tr>
-                                    <tr><td>license</td> {formatLicense()} </tr>
+                                    <tr><td>License</td>{formatLicense()}</tr>
                                     <tr><td>Description</td><td>{selectedMetadata ? selectedMetadata.description : 'N/A'}</td></tr>
                                     <tr><td>Contact</td><td>{selectedMetadata ? selectedMetadata.contact : 'N/A'}</td></tr>
                                     <tr><td>Tables</td><td>{selectedMetadata ? selectedMetadata.tables : 'N/A'}</td></tr>
