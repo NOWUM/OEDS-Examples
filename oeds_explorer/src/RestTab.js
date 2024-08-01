@@ -19,7 +19,7 @@ function RestTab({ showPopup }) {
                 <div className="guide-step">
                     <h3>1. Open the API Request Interface</h3>
                     <img src="/OpenIWURequest.png" alt="Open API Request Interface" />
-                    <p>After selecting your desired schema, open the get request for a table you would like to request.</p>
+                    <p>After selecting your desired schema, open the GET request header for a table you would like to request.</p>
                 </div>
                 
                 <div className="guide-step">
@@ -37,7 +37,7 @@ function RestTab({ showPopup }) {
                 <div className="guide-step">
                     <h3>4. Set Limits and Execute</h3>
                     <img src="/IWULimitAndExecute.png" alt="Limit and Execute" />
-                    <p>Always set a 'limit' parameter (e.g., limit=5) when testing to ensure the application remains responsive.</p>
+                    <p>Always set a 'limit' parameter (e.g., limit=5) when testing to ensure the application remains responsive, then run the query using the execute button.</p>
                 </div>
                 
                 <div className="guide-step">
