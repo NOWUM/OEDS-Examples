@@ -11,7 +11,10 @@ function Header({ activeTab, setActiveTab, showPopup, setShowPopup }) {
     }
 
     const getButtonStyle = (tab) => {
-        return tab === activeTab ? { backgroundColor: '#f0f0f0' } : {};
+        return tab === activeTab ? { backgroundColor: '#AED0FF' } : {};
+    }
+    const getPopupButtonStyle = () => {
+        return showPopup ? { backgroundColor: '#AED0FF', marginLeft: '5px' } : { marginLeft: '5px'};
     }
 
     const togglePopup = () => setShowPopup(!showPopup);
@@ -30,7 +33,7 @@ function Header({ activeTab, setActiveTab, showPopup, setShowPopup }) {
                 {activeTab === 'rest' &&
             
                     <div className="select-container" style={{ display: 'flex', alignItems: 'center' }}>
-                        <button className="popup-button" onClick={togglePopup} style={{ marginLeft: '10px' }}>❓</button>
+                        <button className="popup-button" onClick={togglePopup} style={getPopupButtonStyle()}>❓</button>
                         <select
                             value={selectedProfile}
                             onChange={e => setSelectedProfile(e.target.value)}
