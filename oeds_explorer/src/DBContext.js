@@ -33,7 +33,23 @@ export const DBProvider = ({ children }) => {
 
         }).then(response => response.text())
             .then(response => {
-                setSwaggerSpec(JSON.parse(response));
+                const spec = JSON.parse(response);
+                const filteredSpec = { ...spec };
+                filteredSpec.paths = Object.keys(spec.paths).reduce((acc, path) => {
+                    const operations = spec.paths[path];
+                    const filteredOperations = Object.keys(operations).reduce((ops, method) => {
+                        if (!['post', 'patch', 'delete'].includes(method.toLowerCase())) {
+                            ops[method] = operations[method];
+                        }
+                        return ops;
+                    }, {});
+                    if (Object.keys(filteredOperations).length > 0) {
+                        acc[path] = filteredOperations;
+                    }
+                    return acc;
+                }, {});
+                
+                setSwaggerSpec(filteredSpec);
             })
             .catch(error => console.error('Error fetching swagger spec:', error));
     }, [selectedProfile]);

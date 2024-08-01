@@ -8,14 +8,15 @@ import Header from './Header';
 
 function App() {
   const [activeTab, setActiveTab] = useState('rest');
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <DBProvider>
       <div className="App">
-        <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Header activeTab={activeTab} setActiveTab={setActiveTab} showPopup={showPopup} setShowPopup={setShowPopup}/>
         
         <div className="tab-content">
-          {activeTab === 'rest' && <RestTab />}
+          {activeTab === 'rest' && <RestTab showPopup={showPopup} />}
           {activeTab === 'metadata' && <MetadataTab />}
         </div>
       </div>

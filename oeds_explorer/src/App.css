@@ -69,6 +69,17 @@
   text-align: center;
 }
 
+.popup-button {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  z-index: 1000000;
+  padding: 5px;
+  margin: 5px;
+  max-height: 30px;
+  text-align: center;
+}
+
 .button-container {
   display: flex;
   align-items: center;
@@ -98,4 +109,12 @@
     width: 100%;
   }
 
+}
+
+.guide-step {
+  margin-bottom: 20px;
+}
+img {
+  max-width: 100%; /* makes sure the image is not wider than the container */
+  height: auto; /* maintains aspect ratio */
 }
